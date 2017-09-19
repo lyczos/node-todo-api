@@ -99,3 +99,15 @@ describe('GET /todos/:id', () => {
             .end(done);
     })
 });
+
+describe('DELETE /todos/:id', () => {
+   it('should delete doc by id', done => {
+       request(app)
+           .delete(`/todos/${todosMock[0]._id.toHexString()}`)
+           .expect(200)
+           .expect(res => {
+               expect(res.body.text).toBe(todosMock[0].text);
+           })
+           .end(done);
+   })
+});
